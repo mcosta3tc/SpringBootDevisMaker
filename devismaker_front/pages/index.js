@@ -15,32 +15,36 @@ import Paper from '@material-ui/core/Paper';
 const Index = ({list}) => {
 
     return (
-        <TableContainer component={Paper}>
-            <Table aria-label="simple table">
-                <TableHead>
-                    <TableRow>
-                        <TableCell>ID</TableCell>
-                        <TableCell align="right">Client</TableCell>
-                    </TableRow>
-                </TableHead>
-                <TableBody>
-                    {list.map((row) => (
-                        <TableRow key={row.id}>
-                            <TableCell component="th" scope="row">
-                                {row.id}
-                            </TableCell>
-                            <TableCell align="right">{row.client}</TableCell>
+        <Layout>
+            <TableContainer component={Paper}>
+                <Table aria-label="simple table">
+                    <TableHead>
+                        <TableRow>
+                            <TableCell>Client</TableCell>
+                            <TableCell>Département</TableCell>
+                            <TableCell>Produit</TableCell>
+                            <TableCell>Prix</TableCell>
                         </TableRow>
-                    ))}
-                </TableBody>
-            </Table>
-        </TableContainer>
+                    </TableHead>
+                    <TableBody>
+                        {list.map((row) => (
+                            <TableRow>
+                                <TableCell>{row.name}</TableCell>
+                                <TableCell>{row.county}</TableCell>
+                                <TableCell>{row.devis.product.name}</TableCell>
+                                <TableCell>{row.devis.product.price}</TableCell>
+                            </TableRow>
+                        ))}
+                    </TableBody>
+                </Table>
+            </TableContainer>
+        </Layout>
     )
 }
 
 
 Index.getInitialProps = async () => {
-    const resp = await fetch('http://localhost:8080/api/devis')
+    const resp = await fetch('http://localhost:8080/api/clients')
     const json = await resp.json();
     return {list: json}
 }
