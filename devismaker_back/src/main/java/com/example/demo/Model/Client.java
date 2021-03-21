@@ -1,10 +1,19 @@
 package com.example.demo.Model;
 
+import jdk.jfr.DataAmount;
+import lombok.Getter;
+import lombok.Setter;
+import lombok.ToString;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.index.Indexed;
 import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.data.mongodb.core.mapping.Field;
 
+import java.util.List;
+
+@Getter
+@Setter
+@ToString
 @Document("client")
 public class Client {
     @Id
@@ -17,32 +26,12 @@ public class Client {
     @Field("county")
     private Integer county;
 
-    public Integer getCounty() {
-        return county;
-    }
+    private List<Devis> devis;
 
-    public void setCounty(Integer county) {
-        this.county = county;
-    }
-
-    public Client(String id, String client) {
+    public Client(String id, String name, Integer county, List<Devis> devis) {
         this.id = id;
-        this.name = client;
-    }
-
-    public String getId() {
-        return id;
-    }
-
-    public void setId(String id) {
-        this.id = id;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
         this.name = name;
+        this.county = county;
+        this.devis = devis;
     }
 }

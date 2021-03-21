@@ -19,7 +19,7 @@ public class DevisController {
     }
 
     @PostMapping
-    public ResponseEntity addExpense(@RequestBody Devis devis) {
+    public ResponseEntity addDevis(@RequestBody Devis devis) {
         devisService.addDevis(devis);
         return ResponseEntity.status(HttpStatus.CREATED).build();
     }
@@ -31,7 +31,7 @@ public class DevisController {
     }
 
     @GetMapping
-    public ResponseEntity<List<Devis>> getAllExpense() {
+    public ResponseEntity<List<Devis>> getAllDevis() {
         return ResponseEntity.ok(devisService.getAllDevis());
     }
 
