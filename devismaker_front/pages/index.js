@@ -5,40 +5,15 @@ import Layout from "../components/Layout";
 import {useEffect, useState} from "react/cjs/react.production.min";
 import axios from "axios";
 
-const Index = ({devis}) => {
-    const devisList = devis.map(devi => {
-        console.log(devi)
-        return <p>{devi.client}</p>
-    });
-
+const Index = () => {
 
     return (
         <Layout>
-            {devisList}
-            <form>
-                <input
-                    value={state}
-                    type="text"
-                    onChange={e => setState(e.target.value)}
-                    id='id'/>
-                <button
-                    type='submit'
-                    onClick={fetchData0}
-                >
-                    Rechercher
-                </button>
-            </form>
+
         </Layout>
     )
 }
 
-Index.getInitialProps = async () => {
-    const res = await fetch('http://localhost:9090/devis/get');
-    const json = await res.json();
-    return {
-        devis: json
-    }
-};
 
 
 export default Index
