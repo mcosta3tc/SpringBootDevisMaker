@@ -10,10 +10,12 @@ import javax.persistence.Table;
 import com.sagres.devismaker.jsonType.JsonType;
 import org.hibernate.annotations.Type;
 
+import java.io.Serializable;
+
 @Entity
 @Table(name = "devis", schema = "public")
 @org.hibernate.annotations.TypeDef(name = "JsonType", typeClass = JsonType.class)
-public class Devis {
+public class Devis implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

@@ -2,31 +2,44 @@ import until from '../utils/until'
 import * as React from "react";
 import Link from "next/link";
 import Layout from "../components/Layout";
+import {useEffect, useState} from "react/cjs/react.production.min";
+import axios from "axios";
+
+const Index = ({devis}) => {
+    const devisList = devis.map(devi => {
+        console.log(devi)
+        return <p>{devi.client}</p>
+    });
 
 
-class Index extends React.Component {
-
-    static async getInitialProps(ctx) {
-        const res = await fetch('http://localhost:9090/products/')
-        const json = await res.json()
-        return {products: json}
-    }
-
-    render() {
-        return (
-            <Layout>
-                <div>
-                    {this.props.products.map(product => <div>{product.nom}</div>)}
-                </div>
-            </Layout>
-
-        );
-    }
-
-    constructor(props) {
-        super(props);
-    }
+    return (
+        <Layout>
+            {devisList}
+            <form>
+                <input
+                    value={state}
+                    type="text"
+                    onChange={e => setState(e.target.value)}
+                    id='id'/>
+                <button
+                    type='submit'
+                    onClick={fetchData0}
+                >
+                    Rechercher
+                </button>
+            </form>
+        </Layout>
+    )
 }
+
+Index.getInitialProps = async () => {
+    const res = await fetch('http://localhost:9090/devis/get');
+    const json = await res.json();
+    return {
+        devis: json
+    }
+};
+
 
 export default Index
 

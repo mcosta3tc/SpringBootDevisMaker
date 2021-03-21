@@ -19,10 +19,11 @@ class Layout extends React.Component {
                     <div className="header-container">
                         <p className="header-container-title">Devis Maker</p>
                     </div>
-                    this is a header
                 </header>
 
-                {this.props.children}
+                <div className="main-container">
+                    {this.props.children}
+                </div>
 
                 <footer>
                     this is a footer
