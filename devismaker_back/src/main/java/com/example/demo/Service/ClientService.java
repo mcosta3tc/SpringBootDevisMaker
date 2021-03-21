@@ -1,9 +1,7 @@
 package com.example.demo.Service;
 
 import com.example.demo.Model.Client;
-import com.example.demo.Model.Devis;
 import com.example.demo.Repository.ClientRepository;
-import com.example.demo.Repository.DevisRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.List;

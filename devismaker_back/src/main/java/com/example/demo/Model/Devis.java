@@ -10,17 +10,15 @@ import org.springframework.data.mongodb.core.mapping.Field;
 
 @Getter
 @Setter
-@Document("devis")
 public class Devis {
-    @Id
-    private String id;
-    @Field(name = "name")
-    @Indexed(unique = true)
-    private String client;
 
+    @Field("product")
+    private Product product;
+    public Devis() {
+        super();
+    }
 
-    public Devis(String id, String client) {
-        this.id = id;
-        this.client = client;
+    public Devis(Product product) {
+        this.product = product;
     }
 }

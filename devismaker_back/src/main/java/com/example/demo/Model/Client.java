@@ -26,9 +26,10 @@ public class Client {
     @Field("county")
     private Integer county;
 
-    private List<Devis> devis;
+    @Field("devis")
+    private Devis devis;
 
-    public Client(String id, String name, Integer county, List<Devis> devis) {
+    public Client(String id, String name, Integer county, Devis devis) {
         this.id = id;
         this.name = name;
         this.county = county;

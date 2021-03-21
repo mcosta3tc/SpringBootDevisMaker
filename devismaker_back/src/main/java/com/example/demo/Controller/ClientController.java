@@ -1,9 +1,7 @@
 package com.example.demo.Controller;
 
 import com.example.demo.Model.Client;
-import com.example.demo.Model.Devis;
 import com.example.demo.Service.ClientService;
-import com.example.demo.Service.DevisService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
