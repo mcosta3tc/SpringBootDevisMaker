@@ -4,17 +4,16 @@ import com.example.demo.Model.Client;
 import com.example.demo.Model.Product;
 import com.example.demo.Repository.ClientRepository;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import java.net.URI;
 import java.util.List;
 
 @RestController
+@RequestMapping("/api/clients")
 public class ClientController {
 
     private ClientRepository repository;
@@ -23,12 +22,13 @@ public class ClientController {
         this.repository = repository;
     }
 
-    @GetMapping("/clients")
+    @GetMapping
     public List<Client> getAllClient() {
         return repository.findAll();
     }
 
-    @PostMapping("/clients")
+    @RequestMapping(method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
+    @ResponseBody
     public Client addClient(@RequestBody Client client) {
         Client clientSaved = repository.save(client);
         return clientSaved;
