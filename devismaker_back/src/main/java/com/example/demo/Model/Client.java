@@ -1,38 +1,35 @@
 package com.example.demo.Model;
 
-import jdk.jfr.DataAmount;
-import lombok.Getter;
-import lombok.Setter;
-import lombok.ToString;
-import org.springframework.data.annotation.Id;
-import org.springframework.data.mongodb.core.index.Indexed;
-import org.springframework.data.mongodb.core.mapping.Document;
-import org.springframework.data.mongodb.core.mapping.Field;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+import lombok.*;
+import org.springframework.context.annotation.Primary;
 
+
+import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
 
 @Getter
 @Setter
 @ToString
-@Document("client")
+@AllArgsConstructor
+@NoArgsConstructor
+@Entity
+@Table(name = "client")
 public class Client {
     @Id
-    private String id;
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name = "id")
+    private UUID id;
 
-    @Field("name")
-    @Indexed(unique = true)
+    @Column(name = "name")
     private String name;
 
-    @Field("county")
-    private Integer county;
+    @Column(name = "zip")
+    private String zip;
 
-    @Field("devis")
-    private Devis devis;
-
-    public Client(String id, String name, Integer county, Devis devis) {
-        this.id = id;
-        this.name = name;
-        this.county = county;
-        this.devis = devis;
-    }
+    @JsonManagedReference
+    @OneToMany(targetEntity = Quotation.class, mappedBy = "client")
+    private List<Quotation> quotation = new ArrayList<>();
 }

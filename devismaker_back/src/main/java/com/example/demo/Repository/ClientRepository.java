@@ -1,14 +1,13 @@
 package com.example.demo.Repository;
 
 import com.example.demo.Model.Client;
-import com.example.demo.Model.Devis;
-import org.springframework.data.mongodb.repository.MongoRepository;
-import org.springframework.data.mongodb.repository.Query;
+import com.example.demo.Model.Product;
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
 
-import java.util.Optional;
+import java.util.UUID;
 
+@Repository
+public interface ClientRepository extends JpaRepository<Client, UUID> {
 
-public interface ClientRepository extends MongoRepository<Client, String> {
-    @Query("{'name': ?0}")
-    Optional<Client> findByName(String name);
 }

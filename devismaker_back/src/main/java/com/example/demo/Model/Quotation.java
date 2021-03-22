@@ -16,20 +16,20 @@ import java.util.UUID;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-@Table(name = "product")
-public class Product {
+@Table(name = "quotation")
+public class Quotation {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "id")
     private UUID id;
 
-    @Column(name = "name")
-    private String name;
-
-    @Column(name = "price")
-    private Integer price;
-
     @JsonBackReference
-    @ManyToMany(mappedBy = "product")
-    private List<Quotation> quotation;
+    @ManyToOne
+    @JoinColumn(name = "client_id", nullable = false)
+    private Client client;
+
+    @JsonManagedReference
+    @ManyToMany(cascade = CascadeType.ALL)
+    @JoinTable
+    private List<Product> product;
 }

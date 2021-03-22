@@ -11,6 +11,7 @@ import TableContainer from '@material-ui/core/TableContainer';
 import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
+import axios from 'axios';
 
 const Index = ({list}) => {
 
@@ -44,9 +45,9 @@ const Index = ({list}) => {
 
 
 Index.getInitialProps = async () => {
-    const resp = await fetch('http://localhost:8080/api/clients')
-    const json = await resp.json();
-    return {list: json}
+    const res = await axios.get('http://localhost:8080/api/clients')
+    console.log(res)
+    return {list: res.data}
 }
 
 export default Index
